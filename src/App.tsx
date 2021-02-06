@@ -1,58 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect } from "react";
+import styles from "./App.module.css";
+import { Grid, Button } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "./app/store";
+import { fetchAsyncGetMyProf } from "./features/auth/authSlice";
+import {
+  fetchAsyncGetSkills,
+  fetchAsyncGetUsers,
+  fetchAsyncGetCategory,
+  selectSelectedSkill,
+} from "./features/skills/skillSlice";
 
-function App() {
+import SkillList from "./features/skills/SkillList";
+import SkillDisplay from "./features/skills/SkillDisplay";
+
+const App: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const selectedSkill = useSelector(selectSelectedSkill);
+
+  const logout = () => {
+    localStorage.removeItem("localJWT");
+    window.location.href = "/";
+  };
+
+  useEffect(() => {
+    const fetchBootloader = async () => {
+      await dispatch(fetchAsyncGetSkills());
+      await dispatch(fetchAsyncGetUsers());
+      await dispatch(fetchAsyncGetCategory());
+      await dispatch(fetchAsyncGetMyProf());
+    };
+    fetchBootloader();
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <div className={styles.logout_icon}>
+        <button className={styles.icon} onClick={logout}>
+          <ExitToAppIcon fontSize="large" />
+        </button>
+      </div>
+      <div className={styles.list}>
+        <SkillList />
+      </div>
+      <Grid className={styles.display} container spacing={1}>
+        <Grid item xs={9}>
+          {selectedSkill.name && <SkillDisplay />}
+        </Grid>
+      </Grid>
     </div>
   );
-}
+};
 
 export default App;

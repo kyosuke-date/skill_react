@@ -1,0 +1,15 @@
+{
+  "id": "f38c1173-2915-43ab-bcc4-cbe7d1b6ee86",
+  "name": "山田太郎",
+  "dept": 1,
+  "dept_name": "development",
+  "career": "The password is too similar to the username.\r\nThis password is too short. It must contain at least 8 characters.\r\nThis password is too common.\r\nThe password is too similar to the username.\r\nThis password is too short. It must contain at least 8 characters.\r\nThis password is too common.",
+  "infla": "AWS",
+  "dev": "Python　Django",
+  "speciality": "backend develop",
+  "myself": "Hello. Nice to meet you. i'm good at backend.",
+  "owner": 1,
+  "owner_username": "super",
+  "created_at": "2021-01-19 16:36",
+  "updated_at": "2021-01-19 16:36"
+}

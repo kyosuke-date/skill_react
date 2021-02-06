@@ -1,0 +1,31 @@
+.root {
+  position: relative;
+  height: 100vh;
+  z-index: 100;
+  overflow: auto;
+  overflow-y: auto;
+}
+.root::-webkit-scrollbar {
+  display: none;
+}
+
+.table {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 25vw;
+  max-width: 200px;
+  min-width: 160px;
+  z-index: 100;
+}
+
+.menu_btn {
+  position: fixed;
+  top: 8px;
+  left: 0px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: lightslategray;
+  cursor: pointer;
+  z-index: 101;
+}
