@@ -228,6 +228,7 @@ export const skillSlice = createSlice({
       }
     );
     builder.addCase(fetchAsyncCreateSkill.rejected, () => {
+      console.log("missed");
       window.location.href = "/";
     });
     builder.addCase(
